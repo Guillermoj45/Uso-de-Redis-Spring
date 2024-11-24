@@ -1,36 +1,60 @@
 package com.biblioteca.proyecto_spring_redits.Controller;
 
-import com.biblioteca.proyecto_spring_redits.Model.Empleados;
+import com.biblioteca.proyecto_spring_redits.Model.Empleado;
 import com.biblioteca.proyecto_spring_redits.Service.EmpleadosService;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
-@RestController
+@Controller
 @RequestMapping("/empleados")
 public class EmpleadosController {
+
     private final EmpleadosService empleadosService;
 
+    private final PasswordEncoder passwordEncoder;
+
+    public EmpleadosController(@Lazy EmpleadosService empleadosService,@Lazy PasswordEncoder passwordEncoder) {
+        this.empleadosService = empleadosService;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @GetMapping("/nuevo")
+    public String mostrarFormularioDeRegistro(Model model) {
+        model.addAttribute("empleado", new Empleado());
+        return "registro";
+    }
+
+    @PostMapping("/nuevo")
+    public String registrarEmpleado(Empleado empleado) {
+        empleado.setPassword(passwordEncoder.encode(empleado.getPassword()));
+        empleadosService.save(empleado);
+        return "redirect:/";
+    }
+
     @GetMapping
-    public List<Empleados> listAll() {
+    public List<Empleado> listAll() {
         return empleadosService.listAll();
     }
 
     @GetMapping("{id}")
-    public Empleados findById(@PathVariable int id) {
+    public Empleado findById(@PathVariable int id) {
         return empleadosService.findById(id);
     }
 
     @PostMapping
-    public Empleados create(@RequestBody Empleados empleados) {
-        return empleadosService.save(empleados);
+    public Empleado create(@RequestBody Empleado empleado) {
+        return empleadosService.save(empleado);
     }
 
     @PutMapping
-    public Empleados update(@RequestBody Empleados empleados) {
-        return empleadosService.save(empleados);
+    public Empleado update(@RequestBody Empleado empleado) {
+        return empleadosService.save(empleado);
     }
 
     @DeleteMapping("{id}")

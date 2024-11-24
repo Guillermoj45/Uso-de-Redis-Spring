@@ -1,15 +1,15 @@
 package com.biblioteca.proyecto_spring_redits.Service;
 
-import com.biblioteca.proyecto_spring_redits.Model.Empleados;
+import com.biblioteca.proyecto_spring_redits.Model.Empleado;
 
 import java.util.List;
 
 public interface IEmpleadosService {
-    public List<Empleados> listAll();
+    public List<Empleado> listAll();
 
-    public Empleados findById(int id);
+    public Empleado findById(int id);
 
-    public Empleados save(Empleados empleados);
+    public Empleado save(Empleado empleado);
 
     public void delete(int id);
 }

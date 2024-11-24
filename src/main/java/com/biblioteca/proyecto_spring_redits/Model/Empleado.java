@@ -10,22 +10,31 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Empleados {
+public class Empleado {
     @Id
     @Column(name = "id_empleado")
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id_empleado;
 
-    @Column(name = "nombre", nullable = false, length = 50)
+    @Column(name = "username",unique = true, length = 50)
+    private String username;
+
+    @Column(name = "password", length = 500)
+    private String password;
+
+    @Column(name = "role", length = 50)
+    private String roles;
+
+    @Column(name = "nombre", length = 50)
     private String nombre;
 
-    @Column(name = "apellido", nullable = false, length = 50)
+    @Column(name = "apellido", length = 50)
     private String apellido;
 
-    @Column(name = "direccion", nullable = false, length = 200)
+    @Column(name = "direccion", length = 200)
     private String direccion;
 
-    @Column(name = "telefono", nullable = false, length = 10, columnDefinition = "CHAR(10)")
+    @Column(name = "telefono", length = 10, columnDefinition = "CHAR(10)")
     private String telefono;
 
 }

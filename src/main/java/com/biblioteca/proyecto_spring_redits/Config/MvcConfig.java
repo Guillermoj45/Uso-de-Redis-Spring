@@ -1,6 +1,7 @@
 package com.biblioteca.proyecto_spring_redits.Config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -12,6 +13,16 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login");
     }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:8080")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*")
+                .allowCredentials(true);
+    }
+
     //addViewController(ViewControllerRegistry registry): permite mapear URLS a vistas directamente
     //registry.addViewController("/login"): Agrega un controlador de vista para la URL /login.
     // es decir, que cuando un usuario navega a /login, se mostrará la vista
