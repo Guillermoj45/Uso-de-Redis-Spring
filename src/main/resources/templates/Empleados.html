@@ -59,16 +59,16 @@
         <th>Operaciones</th>
     </thead>
     <tbody id="cuerpo_tabla">
-        <tr th:each="menu : ${menus}" th:id="'fila_' + ${menu.getId()}">
-            <td th:text="${menu.getId()}">1</td>
-            <td th:text="${menu.getNombre()}">Nombre</td>
-            <td th:text="${menu.getDescripcion()}">Email</td>
-            <td th:text="${menu.getPrecio()}">Teléfono</td>
-            <td>
-                <a th:href="@{/empleado/edit/{id}(id=${menu.id})}" class="btn btn-primary">Editar</a>
-                <button th:value="${menu.getId()}" class="btn btn-danger">Eliminar</button>
-            </td>
-        </tr>
+    <tr th:each="empleado : ${empleados}" th:id="'fila_' + ${empleado.getId()}">
+        <td th:text="${empleado.getId()}">1</td>
+        <td th:text="${empleado.getNombre()}">Nombre</td>
+        <td th:text="${empleado.getTelefono()}">Teléfono</td>
+        <td th:text="${empleado.getDireccion()}">Email</td>
+        <td>
+            <a th:href="@{/empleado/edit/{id}(id=${menu.id})}" class="btn btn-primary">Editar</a>
+            <button th:value="${menu.getId()}" class="btn btn-danger">Eliminar</button>
+        </td>
+    </tr>
     </tbody>
 </table>
 

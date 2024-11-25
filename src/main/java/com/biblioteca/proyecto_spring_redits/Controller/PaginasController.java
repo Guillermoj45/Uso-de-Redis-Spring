@@ -16,7 +16,6 @@ public class PaginasController {
     private final ClienteService clienteService;
     private final EmpleadosService empleadoService;
 
-
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("menus", menuService.listAll());
@@ -24,27 +23,20 @@ public class PaginasController {
     }
 
     @GetMapping("clientes")
-    public String clientes() {
-
-        return "index";
+    public String clientes(Model model) {
+        model.addAttribute("clientes", clienteService.listAll());
+        return "Clientes";
     }
-    @GetMapping("cliente/{id}")
-    public String clientes(@PathVariable int id) {
-        return "cliente";
+
+    @GetMapping("clientes/{id}")
+    public String clientes(@PathVariable int id, Model model) {
+        model.addAttribute("cliente", clienteService.findById(id));
+        return "Cliente";
     }
 
     @GetMapping("empleados")
-    public String empleados() {
-        return "index";
-    }
-
-    @GetMapping("empleado/{id}")
-    public String empleados(@PathVariable int id) {
-        return "empleado";
-    }
-
-    @GetMapping("compras")
-    public String compras() {
-        return "index";
+    public String empleados(Model model){
+        model.addAttribute("empleados", empleadoService.listAll());
+        return "Empleados";
     }
 }

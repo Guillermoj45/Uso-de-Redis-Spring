@@ -14,7 +14,7 @@ public class Empleado {
     @Id
     @Column(name = "id_empleado")
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private int id_empleado;
+    private int id;
 
     @Column(name = "username",unique = true, length = 50)
     private String username;
