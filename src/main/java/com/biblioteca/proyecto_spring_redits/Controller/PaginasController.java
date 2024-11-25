@@ -1,5 +1,6 @@
 package com.biblioteca.proyecto_spring_redits.Controller;
 
+import com.biblioteca.proyecto_spring_redits.Model.Empleado;
 import com.biblioteca.proyecto_spring_redits.Service.ClienteService;
 import com.biblioteca.proyecto_spring_redits.Service.EmpleadosService;
 import com.biblioteca.proyecto_spring_redits.Service.MenuService;
@@ -32,6 +33,12 @@ public class PaginasController {
     public String clientes(@PathVariable int id, Model model) {
         model.addAttribute("cliente", clienteService.findById(id));
         return "Cliente";
+    }
+
+    @GetMapping("empleados/nuevo")
+    public String empleadosNew(Model model) {
+        model.addAttribute("empleado", new Empleado());
+        return "registro";
     }
 
     @GetMapping("empleados")
