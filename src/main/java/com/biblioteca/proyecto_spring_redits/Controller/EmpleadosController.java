@@ -2,7 +2,6 @@ package com.biblioteca.proyecto_spring_redits.Controller;
 
 import com.biblioteca.proyecto_spring_redits.Model.Empleado;
 import com.biblioteca.proyecto_spring_redits.Service.EmpleadosService;
-import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
