@@ -65,8 +65,8 @@
         <td th:text="${empleado.getTelefono()}">Teléfono</td>
         <td th:text="${empleado.getDireccion()}">Email</td>
         <td>
-            <a th:href="@{/empleado/edit/{id}(id=${menu.id})}" class="btn btn-primary">Editar</a>
-            <button th:value="${menu.getId()}" class="btn btn-danger">Eliminar</button>
+            <a th:href="@{/empleado/edit/{id}(id=${empleado.id})}" class="btn btn-primary">Editar</a>
+            <button th:value="${empleado.getId()}" class="btn btn-danger">Eliminar</button>
         </td>
     </tr>
     </tbody>
