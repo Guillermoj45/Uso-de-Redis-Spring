@@ -28,7 +28,7 @@ public class PaginasController {
     @GetMapping("clientes")
     public String clientes(Model model) {
         model.addAttribute("clientes", clienteService.listAll());
-        return "Clientes";
+        return "Pantallas/Clientes";
     }
 
     @GetMapping("clientes/{id}")
@@ -46,13 +46,13 @@ public class PaginasController {
     @GetMapping("empleados")
     public String empleados(Model model){
         model.addAttribute("empleados", empleadoService.listAll());
-        return "Empleados";
+        return "Pantallas/Empleados";
     }
 
 
     @GetMapping("encargo/")
     public String encargos(Model model) {
         model.addAttribute("encargos", encargoMenuService.listAll());
-        return "Encargos";
+        return "Pantallas/Encargos";
     }
 }

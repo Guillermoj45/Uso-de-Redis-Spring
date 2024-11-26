@@ -53,14 +53,18 @@
     <thead>
     <tr>
         <th>ID</th>
+        <th>Nombre de usuario</th>
+        <th>Rol</th>
         <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Precio</th>
+        <th>Numero de teléfono</th>
+        <th>Dirección</th>
         <th>Operaciones</th>
     </thead>
     <tbody id="cuerpo_tabla">
     <tr th:each="empleado : ${empleados}" th:id="'fila_' + ${empleado.getId()}">
         <td th:text="${empleado.getId()}">1</td>
+        <td th:text="${empleado.getUsername()}"></td>
+        <td th:text="${empleado.getRoles()}"></td>
         <td th:text="${empleado.getNombre()}">Nombre</td>
         <td th:text="${empleado.getTelefono()}">Teléfono</td>
         <td th:text="${empleado.getDireccion()}">Email</td>
@@ -76,7 +80,7 @@
 <script>
 
     function eliminar(id){
-        fetch('/menu/delete/'+id, {
+        fetch('/empleados/'+id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

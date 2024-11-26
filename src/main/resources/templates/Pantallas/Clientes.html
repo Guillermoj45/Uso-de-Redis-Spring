@@ -78,7 +78,7 @@
 <script>
 
   function eliminar(id){
-    fetch('/cliente/delete/'+id, {
+    fetch('/cliente/'+id, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
