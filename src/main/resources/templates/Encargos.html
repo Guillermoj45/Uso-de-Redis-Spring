@@ -47,28 +47,29 @@
 
 
 <div class="starter-template">
-  <h1>Listado de clientes</h1>
+  <h1>Listado de empleado de Menus</h1>
 </div>
 <table class="table">
   <thead>
   <tr>
     <th>ID</th>
     <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Teléfono</th>
-    <th>Dirección</th>
-    <th>Acciones</th>
+    <th>Descripción</th>
+    <th>Precio</th>
+    <th>Fecha de encargo</th>
+    <th>Fecha de entrega</th>
+    <th>Opciones<th>
   </thead>
   <tbody id="cuerpo_tabla">
-  <tr th:each="cliente : ${clientes}" th:id="'fila_' + ${cliente.getId()}">
-    <td th:text="${cliente.getId()}">1</td>
-    <td th:text="${cliente.getNombre()}">Nombre</td>
-    <td th:text="${cliente.getApellido()}">Apellido</td>
-    <td th:text="${cliente.getTelefono()}">Teléfono</td>
-    <td th:text="${cliente.getDireccion()}">Dirección</td>
+  <tr th:each="empleado : ${encargos}" th:id="'fila_' + ${empleado.getId()}">
+    <td th:text="${empleado.getId()}">1</td>
+    <td th:text="${empleado.getCliente().getNombre()}">Nombre</td>
+    <td th:text="${empleado.getMenu().getNombre()}">Teléfono</td>
+    <td th:text="${empleado.getFechaEncargo()}">Teléfono</td>
+    <td th:text="${empleado.getFechaEntrega()}">Teléfono</td>
     <td>
-      <a th:href="@{/empleado/edit/{id}(id=${cliente.getId()})}" class="btn btn-primary">Editar</a>
-      <button th:value="${cliente.getId()}" class="btn btn-danger">Eliminar</button>
+      <a th:href="@{/empleado/edit/{id}(id=${empleado.id})}" class="btn btn-primary">Editar</a>
+      <button th:value="${empleado.getId()}" class="btn btn-danger">Eliminar</button>
     </td>
   </tr>
   </tbody>
@@ -78,7 +79,7 @@
 <script>
 
   function eliminar(id){
-    fetch('/cliente/delete/'+id, {
+    fetch('/menu/delete/'+id, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

@@ -3,10 +3,11 @@ package com.biblioteca.proyecto_spring_redits.Controller;
 import com.biblioteca.proyecto_spring_redits.Model.Empleado;
 import com.biblioteca.proyecto_spring_redits.Service.ClienteService;
 import com.biblioteca.proyecto_spring_redits.Service.EmpleadosService;
+import com.biblioteca.proyecto_spring_redits.Service.EncargoMenuService;
 import com.biblioteca.proyecto_spring_redits.Service.MenuService;
 import lombok.AllArgsConstructor;
-import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -16,6 +17,7 @@ public class PaginasController {
     private final MenuService menuService;
     private final ClienteService clienteService;
     private final EmpleadosService empleadoService;
+    private final EncargoMenuService encargoMenuService;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -45,5 +47,12 @@ public class PaginasController {
     public String empleados(Model model){
         model.addAttribute("empleados", empleadoService.listAll());
         return "Empleados";
+    }
+
+
+    @GetMapping("encargo/")
+    public String encargos(Model model) {
+        model.addAttribute("encargos", encargoMenuService.listAll());
+        return "Encargos";
     }
 }

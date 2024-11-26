@@ -8,7 +8,7 @@
     <link href="/css/starter-template.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: -50px">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Miempresa.com</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
                     <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/empleados/nuevo">Empleado</a>
+                    <a class="nav-link" href="/empleado/nuevo">Empleado</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/clientes">Clientes</a>
@@ -45,21 +45,36 @@
     </div>
 </nav>
 
-
-   <div class="container mt-5">
+<div class="container mt-5">
     <h1 class="mb-4">Registro de Empleado</h1>
-    <form th:action="@{/empleados/nuevo}" th:object="${empleado}" method="post">
+    <form th:action="@{/empleado/nuevo}" th:object="${empleado}" method="post">
         <div class="mb-3">
-            <label for="username" class="form-label">Nombre de usuario:</label>
-            <input type="text" id="username" th:field="*{username}" class="form-control" />
+            <label for="username" class="form-label">Nombre de usuario*:</label>
+            <input type="text" id="username" th:field="*{username}" class="form-control" required />
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Contraseña:</label>
-            <input type="password" id="password" th:field="*{password}" class="form-control" />
+            <label for="password" class="form-label">Contraseña*:</label>
+            <input type="password" id="password" th:field="*{password}" class="form-control" required />
         </div>
         <div class="mb-3">
-            <label for="roles" class="form-label">Rol:</label>
-            <input type="text" id="roles" th:field="*{roles}" class="form-control" />
+            <label for="roles" class="form-label">Rol*:</label>
+            <input type="text" id="roles" th:field="*{roles}" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido:</label>
+            <input type="text" id="apellido" th:field="*{apellido}" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección:</label>
+            <input type="text" id="direccion" th:field="*{direccion}" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input type="text" id="telefono" th:field="*{telefono}" class="form-control" />
         </div>
         <div>
             <button type="submit" class="btn btn-primary">Registrar</button>

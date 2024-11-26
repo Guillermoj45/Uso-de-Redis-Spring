@@ -16,4 +16,6 @@ public class LoginController {
         request.logout();
         return "redirect:/login";
     }
+
+
 }
