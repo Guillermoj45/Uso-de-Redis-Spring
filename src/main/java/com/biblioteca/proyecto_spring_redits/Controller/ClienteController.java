@@ -3,12 +3,13 @@ package com.biblioteca.proyecto_spring_redits.Controller;
 import com.biblioteca.proyecto_spring_redits.Model.Cliente;
 import com.biblioteca.proyecto_spring_redits.Service.ClienteService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @AllArgsConstructor
-@RestController
+@Controller
 @RequestMapping("/cliente")
 public class ClienteController {
     private final ClienteService clienteService;

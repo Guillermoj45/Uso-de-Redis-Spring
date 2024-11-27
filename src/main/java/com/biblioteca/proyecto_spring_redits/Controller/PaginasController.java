@@ -33,10 +33,36 @@ public class PaginasController {
         return "Pantallas/Index";
     }
 
+    @GetMapping("menu/nuevo")
+    public String registrarMenu(Model model) {
+        model.addAttribute("menu", new Menu());
+        return "Registro/modificacion/RegistroMenu";
+    }
+
+    @GetMapping("menu/edit/{id}")
+    public String editarMenu(Model model,@PathVariable int id) {
+        model.addAttribute("menu", menuService.listById(id));
+        return "Registro/modificacion/RegistroMenu";
+    }
+
+    @PostMapping("menu/edit/{id}")
+    public String editarMenu(Menu menu) {
+        menuService.save(menu);
+        return "redirect:/";
+    }
+
+
+
     @GetMapping("clientes")
     public String clientes(Model model) {
         model.addAttribute("clientes", clienteService.listAll());
         return "Pantallas/Clientes";
+    }
+
+    @GetMapping("clientes/nuevo")
+    public String clienteNew(Model model) {
+        model.addAttribute("empleado", new Empleado());
+        return "Registro/modificacion/RegistroEmpleados";
     }
 
     @GetMapping("clientes/{id}")
@@ -44,6 +70,14 @@ public class PaginasController {
         model.addAttribute("cliente", clienteService.findById(id));
         return "Cliente";
     }
+
+    @PostMapping("clientes/edit/{id}")
+    public String registrarCliente(Model model) {
+        model.addAttribute("cliente", new Cliente());
+        return "redirect:/";
+    }
+
+
 
     @GetMapping("empleados/nuevo")
     public String empleadosNew(Model model) {
@@ -58,11 +92,14 @@ public class PaginasController {
     }
 
 
+
     @GetMapping("encargo/")
     public String encargos(Model model) {
         model.addAttribute("encargos", encargoMenuService.listAll());
         return "Pantallas/Encargos";
     }
+
+
 
     @GetMapping("empleado/nuevo")
     public String mostrarFormularioDeRegistro(Model model) {
@@ -95,29 +132,5 @@ public class PaginasController {
         }
         empleadoService.save(empleado);
         return "redirect:/empleados";
-    }
-
-    @GetMapping("menu/nuevo")
-    public String registrarMenu(Model model) {
-        model.addAttribute("menu", new Menu());
-        return "Registro/modificacion/RegistroMenu";
-    }
-
-    @GetMapping("menu/edit/{id}")
-    public String editarMenu(Model model,@PathVariable int id) {
-        model.addAttribute("menu", menuService.listById(id));
-        return "Registro/modificacion/RegistroMenu";
-    }
-
-    @PostMapping("menu/edit/{id}")
-    public String editarMenu(Menu menu) {
-        menuService.save(menu);
-        return "redirect:/";
-    }
-
-    @PostMapping("clientes/edit/{id}")
-    public String registrarCliente(Model model) {
-        model.addAttribute("cliente", new Cliente());
-        return "redirect:/";
     }
 }
