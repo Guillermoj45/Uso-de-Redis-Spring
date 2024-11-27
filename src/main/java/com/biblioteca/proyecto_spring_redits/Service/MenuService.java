@@ -20,6 +20,11 @@ public class MenuService implements IMenuService {
     }
 
     @Override
+    public Menu findByNombre(String nombre) {
+        return encargoMenuRepository.findByNombre(nombre);
+    }
+
+    @Override
     public Menu listById(int id) {
         return encargoMenuRepository.findById(id).orElse(null);
     }

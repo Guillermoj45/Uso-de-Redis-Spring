@@ -18,6 +18,8 @@ public class EncargoMenuService implements IEncargoMenuService {
         return encargoMenuRepository.findAll();
     }
 
+
+
     @Override
     public EncargoMenu findById(int id) {
         return encargoMenuRepository.findById(id).orElse(null);

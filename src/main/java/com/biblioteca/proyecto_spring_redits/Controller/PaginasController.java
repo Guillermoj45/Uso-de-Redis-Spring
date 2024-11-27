@@ -2,6 +2,7 @@ package com.biblioteca.proyecto_spring_redits.Controller;
 
 import com.biblioteca.proyecto_spring_redits.Model.Cliente;
 import com.biblioteca.proyecto_spring_redits.Model.Empleado;
+import com.biblioteca.proyecto_spring_redits.Model.EncargoMenu;
 import com.biblioteca.proyecto_spring_redits.Model.Menu;
 import com.biblioteca.proyecto_spring_redits.Service.ClienteService;
 import com.biblioteca.proyecto_spring_redits.Service.EmpleadosService;
@@ -13,6 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
+
+import java.text.Format;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @AllArgsConstructor
 @Controller
@@ -96,7 +101,34 @@ public class PaginasController {
         return "Pantallas/Encargos";
     }
 
+    @GetMapping("encargo/nuevo")
+    public String encargoNew(Model model) {
+        model.addAttribute("encargo", new EncargoMenu());
+        model.addAttribute("fecha", "");
+        return "Registro/modificacion/RegistroEncargos";
+    }
 
+    @PostMapping("encargo/nuevo")
+    public String encargoNew (@ModelAttribute EncargoMenu encargo) {
+        Menu menu = menuService.findByNombre(encargo.getMenu().getNombre());
+        Cliente cliente = clienteService.findByName(encargo.getCliente().getNombre());
+        encargo.setMenu(menu);
+        encargo.setCliente(cliente);
+        encargo.setFechaEncargo(LocalDate.now());
+        encargoMenuService.save(encargo);
+        return "redirect:/encargo/";
+    }
+
+    @GetMapping("encargo/{id}")
+    public String encargo(@PathVariable int id, Model model) {
+        EncargoMenu encargoMenu = encargoMenuService.findById(id);
+        model.addAttribute("encargo", encargoMenu);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String s = encargoMenu.getFechaEncargo().format(formatter);
+        model.addAttribute("fecha", s);
+
+        return "Registro/modificacion/RegistroEncargos";
+    }
 
     @GetMapping("empleados")
     public String empleados(Model model){

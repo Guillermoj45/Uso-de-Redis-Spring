@@ -71,15 +71,15 @@
             </tr>
             </thead>
             <tbody id="cuerpo_tabla">
-            <tr th:each="empleado : ${encargos}" th:id="'fila_' + ${empleado.getId()}">
-                <td th:text="${empleado.getId()}">1</td>
-                <td th:text="${empleado.getCliente().getNombre()}">Nombre</td>
-                <td th:text="${empleado.getMenu().getNombre()}">Descripción</td>
-                <td th:text="${empleado.getFechaEncargo()}">Fecha Encargo</td>
-                <td th:text="${empleado.getFechaEntrega()}">Fecha Entrega</td>
+            <tr th:each="encargo : ${encargos}" th:id="'fila_' + ${encargo.getId()}">
+                <td th:text="${encargo.getId()}">1</td>
+                <td th:text="${encargo.cliente.nombre}">Nombre</td>
+                <td th:text="${encargo.menu.nombre}">Descripción</td>
+                <td th:text="${encargo.fechaEncargo}">Fecha Encargo</td>
+                <td th:text="${encargo.fechaEntrega}">Fecha Entrega</td>
                 <td>
-                    <a th:href="@{/empleado/edit/{id}(id=${empleado.id})}" class="btn btn-primary btn-sm">Editar</a>
-                    <button th:value="${empleado.getId()}" class="btn btn-danger btn-sm">Eliminar</button>
+                    <a th:href="@{/encargo/{id}(id=${encargo.id})}" class="btn btn-primary btn-sm">Editar</a>
+                    <button th:value="${encargo.getId()}" class="btn btn-danger btn-sm">Eliminar</button>
                 </td>
             </tr>
             </tbody>
@@ -102,7 +102,7 @@
 <!-- Custom Script -->
 <script>
     function eliminar(id) {
-        fetch('/menu/delete/' + id, {
+        fetch('/encargos/' + id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

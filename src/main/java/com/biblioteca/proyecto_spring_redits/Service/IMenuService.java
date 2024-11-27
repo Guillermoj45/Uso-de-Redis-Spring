@@ -7,6 +7,8 @@ import java.util.List;
 public interface IMenuService {
     public List<Menu> listAll();
 
+    public Menu findByNombre(String nombre);
+
     public Menu listById(int id);
 
     public Menu save(Menu menu);

@@ -13,6 +13,11 @@ public class ClienteService implements IClienteService {
     private final ClienteRepository clienteRepository;
 
     @Override
+    public Cliente findByName(String nombre) {
+        return clienteRepository.findByNombre(nombre);
+    }
+
+    @Override
     public List<Cliente> listAll() {
         return clienteRepository.findAll();
     }

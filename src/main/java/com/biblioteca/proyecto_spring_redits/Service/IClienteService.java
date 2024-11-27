@@ -5,6 +5,8 @@ import com.biblioteca.proyecto_spring_redits.Model.Cliente;
 import java.util.List;
 
 public interface IClienteService {
+    public Cliente findByName(String nombre);
+
     public List<Cliente> listAll();
 
     public Cliente findById(int id);

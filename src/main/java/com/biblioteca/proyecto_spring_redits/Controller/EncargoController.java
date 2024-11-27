@@ -34,6 +34,7 @@ public class EncargoController {
     }
 
     @DeleteMapping("{id}")
+    @ResponseBody
     public void delete(@PathVariable Integer id) {
         encargoService.delete(id);
     }
