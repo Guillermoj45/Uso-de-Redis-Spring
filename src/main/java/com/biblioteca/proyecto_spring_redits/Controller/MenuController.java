@@ -36,13 +36,8 @@ public class MenuController {
     }
 
     @DeleteMapping("{id}")
+    @ResponseBody
     public void delete(@PathVariable Integer id) {
         menuService.delete(id);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> delete2(@PathVariable Integer id) {
-        menuService.delete(id);
-        return ResponseEntity.ok().build();
     }
 }

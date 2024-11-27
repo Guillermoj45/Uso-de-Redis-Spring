@@ -84,7 +84,7 @@
     </div>
 </div>
 
-<!-- Floating Button Fallback -->
+<!-- Floating Button -->
 <div class="fixed-bottom text-end m-3">
     <button class="btn btn-primary p-3 rounded-circle shadow-lg position-relative"
             onclick="window.location.href='/menu/nuevo'"
@@ -99,7 +99,7 @@
 <!-- Custom Script -->
 <script>
     function eliminar(id) {
-        fetch('/menu/delete/' + id, {
+        fetch('/menu/' + id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

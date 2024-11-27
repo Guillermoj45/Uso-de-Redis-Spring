@@ -37,8 +37,14 @@ public class PaginasController {
         return "Registro/modificacion/RegistroMenu";
     }
 
+    @PostMapping("menu/nuevo")
+    public String clienteNew (@ModelAttribute Menu menu) {
+        menuService.save(menu);
+        return "redirect:/";
+    }
+
     @GetMapping("menu/edit/{id}")
-    public String editarMenu(Model model,@PathVariable int id) {
+    public String editarMenu(Model model, @PathVariable int id) {
         model.addAttribute("menu", menuService.listById(id));
         return "Registro/modificacion/RegistroMenu";
     }
