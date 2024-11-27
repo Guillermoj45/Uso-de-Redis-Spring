@@ -77,7 +77,7 @@
                 <td th:text="${cliente.getTelefono()}">Teléfono</td>
                 <td th:text="${cliente.getDireccion()}">Dirección</td>
                 <td>
-                    <a th:href="@{/cliente/{id}(id=${cliente.getId()})}" class="btn btn-primary btn-sm">Editar</a>
+                    <a th:href="@{/clientes/{id}(id=${cliente.getId()})}" class="btn btn-primary btn-sm">Editar</a>
                     <button th:value="${cliente.getId()}" class="btn btn-danger btn-sm">Eliminar</button>
                 </td>
             </tr>
@@ -89,7 +89,7 @@
 <!-- Floating Button -->
 <div class="fixed-bottom text-end m-3">
     <button class="btn btn-primary p-3 rounded-circle shadow-lg position-relative"
-            onclick="window.location.href='/cliente/nuevo'"
+            onclick="window.location.href='/clientes/nuevo'"
             style="width: 60px; height: 60px; font-size: 24px; transition: transform 0.2s;">
         <i class="bi bi-plus-lg"></i>
     </button>

@@ -48,6 +48,7 @@
 <div class="container mt-5">
     <h1 class="mb-4">Registro de Empleado</h1>
     <form th:action="@{/empleado/nuevo}" th:object="${empleado}" method="post">
+        <input hidden="hidden" th:value="id">
         <div class="mb-3">
             <label for="username" class="form-label">Nombre de usuario*:</label>
             <input type="text" id="username" th:field="*{username}" class="form-control" required />
@@ -80,7 +81,7 @@
         <input type="hidden" id="id" th:field="*{id}" class="form-control" />
 
         <div>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
     </form>
 </div>

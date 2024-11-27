@@ -11,9 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 
 @AllArgsConstructor
@@ -61,35 +59,28 @@ public class PaginasController {
 
     @GetMapping("clientes/nuevo")
     public String clienteNew(Model model) {
-        model.addAttribute("empleado", new Empleado());
-        return "Registro/modificacion/RegistroEmpleados";
+        model.addAttribute("cliente", new Cliente());
+        return "Registro/modificacion/RegistroClientes";
+    }
+
+    @PostMapping("clientes/nuevo")
+    public String clienteNew (@ModelAttribute Cliente cliente) {
+        clienteService.save(cliente);
+        return "redirect:/clientes";
     }
 
     @GetMapping("clientes/{id}")
     public String clientes(@PathVariable int id, Model model) {
         model.addAttribute("cliente", clienteService.findById(id));
-        return "Cliente";
+        return "Registro/modificacion/RegistroClientes";
     }
 
     @PostMapping("clientes/edit/{id}")
-    public String registrarCliente(Model model) {
-        model.addAttribute("cliente", new Cliente());
-        return "redirect:/";
+    public String registrarCliente(@RequestBody Cliente cliente) {
+        clienteService.save(cliente);
+        return "redirect:/clientes";
     }
 
-
-
-    @GetMapping("empleados/nuevo")
-    public String empleadosNew(Model model) {
-        model.addAttribute("empleado", new Empleado());
-        return "Registro/modificacion/RegistroEmpleados";
-    }
-
-    @GetMapping("empleados")
-    public String empleados(Model model){
-        model.addAttribute("empleados", empleadoService.listAll());
-        return "Pantallas/Empleados";
-    }
 
 
 
@@ -101,6 +92,12 @@ public class PaginasController {
 
 
 
+    @GetMapping("empleados")
+    public String empleados(Model model){
+        model.addAttribute("empleados", empleadoService.listAll());
+        return "Pantallas/Empleados";
+    }
+
     @GetMapping("empleado/nuevo")
     public String mostrarFormularioDeRegistro(Model model) {
         model.addAttribute("empleado", new Empleado());
@@ -111,7 +108,7 @@ public class PaginasController {
     public String registrarEmpleado(Empleado empleado) {
         empleado.setPassword(passwordEncoder.encode(empleado.getPassword()));
         empleadoService.save(empleado);
-        return "redirect:/";
+        return "redirect:/empleados";
     }
 
     @GetMapping("empleado/edit/{id}")

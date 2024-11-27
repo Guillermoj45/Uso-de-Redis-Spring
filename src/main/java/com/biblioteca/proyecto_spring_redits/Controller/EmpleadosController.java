@@ -46,6 +46,7 @@ public class EmpleadosController {
     }
 
     @DeleteMapping("{id}")
+    @ResponseBody
     public void delete(@PathVariable Integer id) {
         empleadosService.delete(id);
     }
