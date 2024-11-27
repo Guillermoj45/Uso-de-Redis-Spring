@@ -75,7 +75,7 @@
                 <td th:text="${menu.getDescripcion()}">Descripción</td>
                 <td th:text="${menu.getPrecio()}">Precio</td>
                 <td>
-                    <a th:href="@{/menu/edit/{id}(id=${menu.id})}" class="btn btn-primary btn-sm">Editar</a>
+                    <a th:href="@{/menu/{id}(id=${menu.id})}" class="btn btn-primary btn-sm">Editar</a>
                     <button th:value="${menu.getId()}" class="btn btn-danger btn-sm">Eliminar</button>
                 </td>
             </tr>

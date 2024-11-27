@@ -15,11 +15,11 @@ public class EncargoMenu {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id;
 
-    @JoinColumn
+    @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Menu menu;
 
-    @JoinColumn
+    @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Cliente cliente;
 

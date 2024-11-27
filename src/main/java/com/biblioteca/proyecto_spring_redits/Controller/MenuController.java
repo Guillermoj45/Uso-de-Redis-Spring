@@ -5,6 +5,7 @@ import com.biblioteca.proyecto_spring_redits.Service.MenuService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,15 +21,24 @@ public class MenuController {
         return menuService.listAll();
     }
 
-    @GetMapping("{id}")
-    public Menu findById(@PathVariable int id) {
-        return menuService.listById(id);
+    @GetMapping("nuevo")
+    public String registrarMenu(Model model) {
+        model.addAttribute("menu", new Menu());
+        return "Registro/modificacion/RegistroMenu";
     }
 
     @PostMapping
-    public Menu create(@RequestBody Menu menu) {
-        return menuService.save(menu);
+    public String clienteNew (@ModelAttribute Menu menu) {
+        menuService.save(menu);
+        return "redirect:/";
     }
+
+    @GetMapping("/{id}")
+    public String editarMenu(Model model, @PathVariable int id) {
+        model.addAttribute("menu", menuService.listById(id));
+        return "Registro/modificacion/RegistroMenu";
+    }
+
 
     @PutMapping
     public Menu update(@RequestBody Menu menu) {

@@ -47,7 +47,7 @@
 
 <div class="container mt-5">
     <h1 class="mb-4">Registro de Menús</h1>
-    <form action="" th:object="${menu}" method="post">
+    <form action="/menu" th:object="${menu}" method="post">
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre*:</label>
             <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required />
@@ -64,7 +64,7 @@
         <input type="hidden" id="id" th:field="*{id}" class="form-control" />
 
         <div>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
     </form>
 </div>

@@ -47,7 +47,7 @@
 
 <div class="container mt-5">
   <h1 class="mb-4">Registro de Cliente</h1>
-  <form th:action="@{/clientes/nuevo}" th:object="${cliente}" method="post">
+  <form th:action="@{/clientes}" th:object="${cliente}" method="post">
     <input type="hidden" th:field="*{id}"/>
     <div class="mb-3">
       <label for="nombre" class="form-label">Nombre*:</label>

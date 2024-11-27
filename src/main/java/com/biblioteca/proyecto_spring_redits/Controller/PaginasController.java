@@ -27,7 +27,6 @@ public class PaginasController {
     private final EmpleadosService empleadoService;
     private final EncargoMenuService encargoMenuService;
     private final PasswordEncoder passwordEncoder;
-    private final SpringResourceTemplateResolver defaultTemplateResolver;
 
 
     @GetMapping("/")
@@ -35,63 +34,6 @@ public class PaginasController {
         model.addAttribute("menus", menuService.listAll());
         return "Pantallas/Index";
     }
-
-    @GetMapping("menu/nuevo")
-    public String registrarMenu(Model model) {
-        model.addAttribute("menu", new Menu());
-        return "Registro/modificacion/RegistroMenu";
-    }
-
-    @PostMapping("menu/nuevo")
-    public String clienteNew (@ModelAttribute Menu menu) {
-        menuService.save(menu);
-        return "redirect:/";
-    }
-
-    @GetMapping("menu/edit/{id}")
-    public String editarMenu(Model model, @PathVariable int id) {
-        model.addAttribute("menu", menuService.listById(id));
-        return "Registro/modificacion/RegistroMenu";
-    }
-
-    @PostMapping("menu/edit/{id}")
-    public String editarMenu(Menu menu) {
-        menuService.save(menu);
-        return "redirect:/";
-    }
-
-
-
-    @GetMapping("clientes")
-    public String clientes(Model model) {
-        model.addAttribute("clientes", clienteService.listAll());
-        return "Pantallas/Clientes";
-    }
-
-    @GetMapping("clientes/nuevo")
-    public String clienteNew(Model model) {
-        model.addAttribute("cliente", new Cliente());
-        return "Registro/modificacion/RegistroClientes";
-    }
-
-    @PostMapping("clientes/nuevo")
-    public String clienteNew (@ModelAttribute Cliente cliente) {
-        clienteService.save(cliente);
-        return "redirect:/clientes";
-    }
-
-    @GetMapping("clientes/{id}")
-    public String clientes(@PathVariable int id, Model model) {
-        model.addAttribute("cliente", clienteService.findById(id));
-        return "Registro/modificacion/RegistroClientes";
-    }
-
-    @PostMapping("clientes/edit/{id}")
-    public String registrarCliente(@RequestBody Cliente cliente) {
-        clienteService.save(cliente);
-        return "redirect:/clientes";
-    }
-
 
 
 
