@@ -2,6 +2,7 @@ package com.biblioteca.proyecto_spring_redits.Controller;
 
 import com.biblioteca.proyecto_spring_redits.Model.Empleado;
 import com.biblioteca.proyecto_spring_redits.Service.EmpleadosService;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/empleado")
+
 public class EmpleadosController {
 
     private final EmpleadosService empleadosService;
@@ -21,19 +23,6 @@ public class EmpleadosController {
     public EmpleadosController(@Lazy EmpleadosService empleadosService,@Lazy PasswordEncoder passwordEncoder) {
         this.empleadosService = empleadosService;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    @GetMapping("/nuevo")
-    public String mostrarFormularioDeRegistro(Model model) {
-        model.addAttribute("empleado", new Empleado());
-        return "registro";
-    }
-
-    @PostMapping("/nuevo")
-    public String registrarEmpleado(Empleado empleado) {
-        empleado.setPassword(passwordEncoder.encode(empleado.getPassword()));
-        empleadosService.save(empleado);
-        return "redirect:/";
     }
 
     @GetMapping

@@ -10,17 +10,17 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: -50px">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Miempresa.com</a>
+        <a class="navbar-brand" href="/">Miempresa.com</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link"  href="/">Inicio</a>
+                    <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/empleados">Empleado</a>
+                    <a class="nav-link" href="/empleados">Empleado</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/clientes">Clientes</a>
@@ -47,40 +47,39 @@
 
 
 <div class="starter-template">
-    <h1>Listado de empleados</h1>
+    <h1>Listado de menus</h1>
 </div>
 <table class="table">
     <thead>
     <tr>
         <th>ID</th>
-        <th>Nombre de usuario</th>
-        <th>Rol</th>
         <th>Nombre</th>
-        <th>Numero de teléfono</th>
-        <th>Dirección</th>
+        <th>Descripción</th>
+        <th>Precio</th>
         <th>Operaciones</th>
     </thead>
     <tbody id="cuerpo_tabla">
-    <tr th:each="empleado : ${empleados}" th:id="'fila_' + ${empleado.getId()}">
-        <td th:text="${empleado.getId()}">1</td>
-        <td th:text="${empleado.getUsername()}"></td>
-        <td th:text="${empleado.getRoles()}"></td>
-        <td th:text="${empleado.getNombre()}">Nombre</td>
-        <td th:text="${empleado.getTelefono()}">Teléfono</td>
-        <td th:text="${empleado.getDireccion()}">Email</td>
-        <td>
-            <a th:href="@{/empleado/edit/{id}(id=${empleado.id})}" class="btn btn-primary">Editar</a>
-            <button th:value="${empleado.getId()}" class="btn btn-danger">Eliminar</button>
-        </td>
-    </tr>
+        <tr th:each="menu : ${menus}" th:id="'fila_' + ${menu.getId()}">
+            <td th:text="${menu.getId()}">1</td>
+            <td th:text="${menu.getNombre()}">Nombre</td>
+            <td th:text="${menu.getDescripcion()}">Email</td>
+            <td th:text="${menu.getPrecio()}">Teléfono</td>
+            <td>
+                <a th:href="@{/menu/edit/{id}(id=${menu.id})}" class="btn btn-primary">Editar</a>
+                <button th:value="${menu.getId()}" class="btn btn-danger">Eliminar</button>
+            </td>
+        </tr>
     </tbody>
+
+    <button class="btn" onclick="window.location.href='/'">+</button>
+
 </table>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script>
 
     function eliminar(id){
-        fetch('/empleados/'+id, {
+        fetch('/menu/delete/'+id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

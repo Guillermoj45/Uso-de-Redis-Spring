@@ -17,13 +17,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+          <a class="nav-link" href="/">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/empleados">Empleado</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/clientes">Clientes</a>
+          <a class="nav-link active" aria-current="page" href="/clientes">Clientes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/encargo/">Compras</a>
@@ -67,7 +67,7 @@
     <td th:text="${cliente.getTelefono()}">Teléfono</td>
     <td th:text="${cliente.getDireccion()}">Dirección</td>
     <td>
-      <a th:href="@{/empleado/edit/{id}(id=${cliente.getId()})}" class="btn btn-primary">Editar</a>
+      <a th:href="@{/cliente/{id}(id=${cliente.getId()})}" class="btn btn-primary">Editar</a>
       <button th:value="${cliente.getId()}" class="btn btn-danger">Eliminar</button>
     </td>
   </tr>
