@@ -23,58 +23,10 @@ import java.time.format.DateTimeFormatter;
 @Controller
 public class PaginasController {
     private final MenuService menuService;
-    private final ClienteService clienteService;
-    private final EmpleadosService empleadoService;
-    private final EncargoMenuService encargoMenuService;
-    private final PasswordEncoder passwordEncoder;
-
 
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("menus", menuService.listAll());
         return "Pantallas/Index";
-    }
-
-
-
-
-
-    @GetMapping("empleados")
-    public String empleados(Model model){
-        model.addAttribute("empleados", empleadoService.listAll());
-        return "Pantallas/Empleados";
-    }
-
-    @GetMapping("empleado/nuevo")
-    public String mostrarFormularioDeRegistro(Model model) {
-        model.addAttribute("empleado", new Empleado());
-        return "Registro/modificacion/RegistroEmpleados";
-    }
-
-    @PostMapping("empleado/nuevo")
-    public String registrarEmpleado(Empleado empleado) {
-        empleado.setPassword(passwordEncoder.encode(empleado.getPassword()));
-        empleadoService.save(empleado);
-        return "redirect:/empleados";
-    }
-
-    @GetMapping("empleado/edit/{id}")
-    public String mostrarFormularioModificacion(Model model, @PathVariable int id) {
-        model.addAttribute("empleado", empleadoService.findById(id));
-        return "Registro/modificacion/ModificarEmpleados";
-    }
-
-    @PostMapping("empleado/edit/{id}")
-    public String mostrarFormularioModificacionRecepcion(Empleado empleado) {
-        if (empleado.getId() != 0) {
-            Empleado existingEmpleado = empleadoService.findById(empleado.getId());
-            if (existingEmpleado != null) {
-                empleado.setPassword(existingEmpleado.getPassword());
-            }
-        } else {
-            empleado.setPassword(passwordEncoder.encode(empleado.getPassword()));
-        }
-        empleadoService.save(empleado);
-        return "redirect:/empleados";
     }
 }
