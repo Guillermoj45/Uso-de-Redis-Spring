@@ -11,6 +11,10 @@ import java.io.IOException;
 @Controller("/login")
 public class LoginController {
 
+    /**
+     * Método que devuelve la vista de login
+     * @return HTML de la vista
+     */
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.logout();

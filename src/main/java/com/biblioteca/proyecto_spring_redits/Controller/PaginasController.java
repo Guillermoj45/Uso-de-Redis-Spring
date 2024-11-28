@@ -24,6 +24,11 @@ import java.time.format.DateTimeFormatter;
 public class PaginasController {
     private final MenuService menuService;
 
+    /**
+     * Método que devuelve la vista de los menús
+     * @param model Modelo de la vista
+     * @return HTML de la vista
+     */
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("menus", menuService.listAll());
