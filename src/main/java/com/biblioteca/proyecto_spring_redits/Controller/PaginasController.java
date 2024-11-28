@@ -37,40 +37,7 @@ public class PaginasController {
 
 
 
-    @GetMapping("encargo/")
-    public String encargos(Model model) {
-        model.addAttribute("encargos", encargoMenuService.listAll());
-        return "Pantallas/Encargos";
-    }
 
-    @GetMapping("encargo/nuevo")
-    public String encargoNew(Model model) {
-        model.addAttribute("encargo", new EncargoMenu());
-        model.addAttribute("fecha", "");
-        return "Registro/modificacion/RegistroEncargos";
-    }
-
-    @PostMapping("encargo/nuevo")
-    public String encargoNew (@ModelAttribute EncargoMenu encargo) {
-        Menu menu = menuService.findByNombre(encargo.getMenu().getNombre());
-        Cliente cliente = clienteService.findByName(encargo.getCliente().getNombre());
-        encargo.setMenu(menu);
-        encargo.setCliente(cliente);
-        encargo.setFechaEncargo(LocalDate.now());
-        encargoMenuService.save(encargo);
-        return "redirect:/encargo/";
-    }
-
-    @GetMapping("encargo/{id}")
-    public String encargo(@PathVariable int id, Model model) {
-        EncargoMenu encargoMenu = encargoMenuService.findById(id);
-        model.addAttribute("encargo", encargoMenu);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String s = encargoMenu.getFechaEncargo().format(formatter);
-        model.addAttribute("fecha", s);
-
-        return "Registro/modificacion/RegistroEncargos";
-    }
 
     @GetMapping("empleados")
     public String empleados(Model model){
