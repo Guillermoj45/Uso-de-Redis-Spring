@@ -20,7 +20,7 @@
                     <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/empleado/nuevo">Empleado</a>
+                    <a class="nav-link" href="/empleados">Empleado</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/clientes">Clientes</a>
@@ -47,7 +47,7 @@
 
 <div class="container mt-5">
     <h1 class="mb-4">Registro de Empleado</h1>
-    <form th:action="@{/empleado/nuevo}" th:object="${empleado}" method="post">
+    <form th:action="@{/empleados}" th:object="${empleado}" method="post">
         <div class="mb-3">
             <label for="username" class="form-label">Nombre de usuario*:</label>
             <input type="text" id="username" th:field="*{username}" class="form-control" required />

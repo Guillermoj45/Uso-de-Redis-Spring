@@ -80,7 +80,7 @@
                 <td th:text="${empleado.getTelefono()}">Teléfono</td>
                 <td th:text="${empleado.getDireccion()}">Dirección</td>
                 <td>
-                    <a th:href="@{/empleado/edit/{id}(id=${empleado.id})}" class="btn btn-primary btn-sm">Editar</a>
+                    <a th:href="@{/empleados/edit/{id}(id=${empleado.id})}" class="btn btn-primary btn-sm">Editar</a>
                     <button th:value="${empleado.getId()}" class="btn btn-danger btn-sm">Eliminar</button>
                 </td>
             </tr>
@@ -92,7 +92,7 @@
 <!-- Floating Button -->
 <div class="fixed-bottom text-end m-3">
     <button class="btn btn-primary p-3 rounded-circle shadow-lg position-relative"
-            onclick="window.location.href='/empleado/nuevo'"
+            onclick="window.location.href='/empleados/nuevo'"
             style="width: 60px; height: 60px; font-size: 24px; transition: transform 0.2s;">
         <i class="bi bi-plus-lg"></i>
     </button>
@@ -104,7 +104,7 @@
 <!-- Custom Script -->
 <script>
     function eliminar(id) {
-        fetch('/empleado/' + id, {
+        fetch('/empleados/' + id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
